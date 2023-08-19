@@ -119,7 +119,7 @@ app.get("/messages", async(req, res) => {
     }
     
     try{
-        const messages = await db.collection("messages").find( { $or: [ {to: "Todos"}, { from: user }, {$and: [{ to: user },  {type: "private_message"}]} ] } ).toArray()
+        const messages = await db.collection("messages").find( { $or: [ {to: "Todos"}, { from: user }, {$and: [{ to: user },  {type: "private_message"}]} ] } ).toArray();
         if(limit){
             return res.status(200).send(messages.slice(-limit));
         }else{
@@ -188,7 +188,7 @@ app.post("/status", async (req, res) => {
     try{
         const time = Date.now()
         await db.collection("participants").updateOne({name: User},{$set:{lastStatus: time}})
-        return res.sendStatus(200);
+        return res.sendStatus(201);
     }catch(error){
         return res.sendStatus(404);
     }
