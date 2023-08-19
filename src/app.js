@@ -188,7 +188,7 @@ app.post("/status", async (req, res) => {
     try{
         const time = Date.now()
         await db.collection("participants").updateOne({name: User},{$set:{lastStatus: time}})
-        return res.sendStatus(201);
+        return res.sendStatus(200);
     }catch(error){
         return res.sendStatus(404);
     }
